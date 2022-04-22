@@ -4,7 +4,7 @@ import com.example.retrofitdemo.data.model.Movie
 
 interface CacheMovieDataSource {
 
-    suspend fun getMovieFromCache() : List<Movie>
+    suspend fun getMovieFromCache(): List<Movie>
 
-    suspend fun saveMovieIntoCache(listMovie : List<Movie>)
+    suspend fun saveMovieIntoCache(listMovie: List<Movie>)
 }

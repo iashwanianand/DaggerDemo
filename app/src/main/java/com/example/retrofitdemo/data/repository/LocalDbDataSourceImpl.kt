@@ -6,7 +6,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class LocalDbDataSourceImpl(private val dao : MovieDao) : LocalDbDataSource {
+class LocalDbDataSourceImpl(private val dao: MovieDao) : LocalDbDataSource {
 
     override suspend fun saveMovieIntoDb(movieList: List<Movie>) {
         CoroutineScope(Dispatchers.IO).launch {

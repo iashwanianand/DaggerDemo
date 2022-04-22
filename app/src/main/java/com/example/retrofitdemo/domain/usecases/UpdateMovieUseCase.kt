@@ -5,7 +5,7 @@ import com.example.retrofitdemo.domain.MovieRepository
 
 class UpdateMovieUseCase(private val movieRepository: MovieRepository) {
 
-    suspend fun updateMovies() : List<Movie> {
+    suspend fun updateMovies(): List<Movie> {
         return movieRepository.updateMovies()
     }
 }
