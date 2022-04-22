@@ -1,15 +1,15 @@
-package com.example.retrofitdemo.db
+package com.example.retrofitdemo.data.db
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.retrofitdemo.model.Movie
+import com.example.retrofitdemo.data.model.Movie
 
 @Database(entities = [Movie::class], version = 1)
 abstract class MovieDatabase : RoomDatabase() {
 
-    abstract val dao : MovieDao
+    abstract val dao: MovieDao
 
     companion object {
 
@@ -18,7 +18,11 @@ abstract class MovieDatabase : RoomDatabase() {
         fun getInstance(context: Context): MovieDatabase {
             var instance = INSTANCE
             if (instance == null) {
-                instance = Room.databaseBuilder(context.applicationContext, MovieDatabase::class.java, "movie_db").build()
+                instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    MovieDatabase::class.java,
+                    "movie_db"
+                ).build()
             }
             return instance
         }

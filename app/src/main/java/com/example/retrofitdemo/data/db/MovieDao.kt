@@ -1,10 +1,10 @@
-package com.example.retrofitdemo.db
+package com.example.retrofitdemo.data.db
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-import com.example.retrofitdemo.model.Movie
+import com.example.retrofitdemo.data.model.Movie
 
 @Dao
 interface MovieDao {
