@@ -1,41 +1,71 @@
 package com.example.retrofitdemo.data.repository
 
+import android.util.Log
 import com.example.retrofitdemo.data.model.Movie
+import com.example.retrofitdemo.data.model.MovieList
 import com.example.retrofitdemo.domain.MovieRepository
 import retrofit2.Response
+import java.lang.Exception
 
-class MovieRepositoryImpl(
-    private val remoteMovieDataSourceImpl: RemoteMovieDataSourceImpl,
-    private val localDbDataSourceImpl: LocalDbDataSourceImpl,
-    private val cacheMovieDataSourceImpl: CacheMovieDataSourceImpl
-) : MovieRepository {
+class MovieRepositoryImpl(private val remoteMovieDataSource: RemoteMovieDataSource,
+                          private val localDbDataSource: LocalDbDataSource,
+                          private val cacheMovieDataSource: CacheMovieDataSource) : MovieRepository {
 
     override suspend fun getMovies(): List<Movie> {
-        TODO("Not yet implemented")
+        return getMovieFromCache()
     }
 
     override suspend fun updateMovies(): List<Movie> {
-        TODO("Not yet implemented")
+        val newMovieList = getMovieFromApi()
+        localDbDataSource.clearMovie()
+        localDbDataSource.saveMovieIntoDb(newMovieList)
+        cacheMovieDataSource.saveMovieIntoCache(newMovieList)
+        return newMovieList
     }
 
-    suspend fun getMovieFromApi(): List<Movie> {
-        lateinit var listMovie: List<Movie>
-
-        val response: Response<List<Movie>> = remoteMovieDataSourceImpl.getMovie()
-
-        if (response != null) {
-            listMovie = response.body()!!
+    private suspend fun getMovieFromApi(): List<Movie> {
+        lateinit var movieList : List<Movie>
+        try {
+            val response : Response<MovieList> = remoteMovieDataSource.getMovie()
+            val body : MovieList? = response.body()
+            if (body!= null){
+                movieList = body.movie
+            }
+        }catch (exception : Exception){
+            Log.d("MyTag", exception.message.toString())
         }
-        return listMovie
+        return movieList
     }
 
-    suspend fun saveMovieIntoLocalDb() {
-        val listMovie: List<Movie> = getMovieFromApi()
-
-        if (listMovie.isNotEmpty()) {
-            localDbDataSourceImpl.saveMovieIntoDb(listMovie)
-        } else {
-            getMovieFromApi()
+    suspend fun getMovieFromLocalDB(): List<Movie> {
+        lateinit var movieList : List<Movie>
+        try {
+            movieList = localDbDataSource.getMovieFromDb()
+        }catch (exception : Exception){
+            Log.d("MyTag", exception.message.toString())
         }
+        if (movieList.size > 0){
+            return movieList
+        }else{
+            movieList = getMovieFromApi()
+            localDbDataSource.saveMovieIntoDb(movieList)
+        }
+        return movieList
+    }
+
+    suspend fun getMovieFromCache() : List<Movie>{
+        lateinit var movieList : List<Movie>
+        try {
+            movieList = cacheMovieDataSource.getMovieFromCache()
+        }catch (exception : Exception){
+            Log.d("MyTag", exception.message.toString())
+        }
+        if (movieList.size > 0){
+            return movieList
+        }else{
+            movieList = getMovieFromLocalDB()
+            cacheMovieDataSource.saveMovieIntoCache(movieList)
+        }
+        return movieList
     }
 }

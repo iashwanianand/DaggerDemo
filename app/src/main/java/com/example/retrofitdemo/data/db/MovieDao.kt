@@ -1,19 +1,16 @@
 package com.example.retrofitdemo.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.retrofitdemo.data.model.Movie
 
 @Dao
 interface MovieDao {
 
-    @Insert
-    suspend fun insertMovies(movie: List<Movie>): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertMovies(movie: List<Movie>)
 
     @Update
-    suspend fun updateMovies(movie: List<Movie>): Long
+    suspend fun updateMovies(movie: List<Movie>)
 
     @Query("SELECT * FROM movie_table")
     suspend fun getMovies(): List<Movie>
