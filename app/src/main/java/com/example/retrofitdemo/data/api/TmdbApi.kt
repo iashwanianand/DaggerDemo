@@ -1,6 +1,5 @@
 package com.example.retrofitdemo.data.api
 
-import com.example.retrofitdemo.data.model.Movie
 import com.example.retrofitdemo.data.model.MovieList
 import retrofit2.Response
 import retrofit2.http.GET

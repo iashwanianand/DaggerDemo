@@ -3,7 +3,6 @@ package com.example.retrofitdemo.presentation
 import android.app.Application
 import com.example.retrofitdemo.BuildConfig
 import com.example.retrofitdemo.presentation.di.*
-import dagger.internal.DaggerCollections
 
 class App : Application(), Injector {
     private lateinit var appComponent : AppComponent

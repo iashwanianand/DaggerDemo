@@ -5,7 +5,6 @@ import com.example.retrofitdemo.domain.usecases.UpdateMovieUseCase
 import com.example.retrofitdemo.presentation.MovieViewModelFactory
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class MovieModule {

@@ -37,14 +37,14 @@ class MovieRepositoryImpl(private val remoteMovieDataSource: RemoteMovieDataSour
         return movieList
     }
 
-    suspend fun getMovieFromLocalDB(): List<Movie> {
+    private suspend fun getMovieFromLocalDB(): List<Movie> {
         lateinit var movieList : List<Movie>
         try {
             movieList = localDbDataSource.getMovieFromDb()
         }catch (exception : Exception){
             Log.d("MyTag", exception.message.toString())
         }
-        if (movieList.size > 0){
+        if (movieList.isNotEmpty()){
             return movieList
         }else{
             movieList = getMovieFromApi()
@@ -53,14 +53,14 @@ class MovieRepositoryImpl(private val remoteMovieDataSource: RemoteMovieDataSour
         return movieList
     }
 
-    suspend fun getMovieFromCache() : List<Movie>{
+    private suspend fun getMovieFromCache() : List<Movie>{
         lateinit var movieList : List<Movie>
         try {
             movieList = cacheMovieDataSource.getMovieFromCache()
         }catch (exception : Exception){
             Log.d("MyTag", exception.message.toString())
         }
-        if (movieList.size > 0){
+        if (movieList.isNotEmpty()){
             return movieList
         }else{
             movieList = getMovieFromLocalDB()
