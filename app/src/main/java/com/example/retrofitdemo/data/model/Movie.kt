@@ -1,12 +1,29 @@
 package com.example.retrofitdemo.data.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
 @Entity(tableName = "movie_table")
 data class Movie(
 
-    @SerializedName("adult")
+    @PrimaryKey
+    @SerializedName("id")
+    val id: Int,
+
+    @SerializedName("overview")
+    val overview: String,
+
+    @SerializedName("poster_path")
+    val posterPath: String,
+
+    @SerializedName("release_date")
+    val releaseDate: String,
+
+    @SerializedName("title")
+    val title: String
+
+    /*@SerializedName("adult")
     val adult: Boolean,
 
     @SerializedName("backdrop_path")
@@ -46,5 +63,5 @@ data class Movie(
     val voteAverage: Double,
 
     @SerializedName("vote_count")
-    val voteCount: Int
+    val voteCount: Int*/
 )

@@ -3,7 +3,7 @@ package com.example.retrofitdemo.data.repository
 import com.example.retrofitdemo.data.model.Movie
 
 class CacheMovieDataSourceImpl : CacheMovieDataSource {
-    private lateinit var movieList: ArrayList<Movie>
+    private var movieList = ArrayList<Movie>()
 
     override suspend fun getMovieFromCache(): List<Movie> {
         return movieList
