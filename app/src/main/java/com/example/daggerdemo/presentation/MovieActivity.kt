@@ -10,9 +10,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.daggerdemo.R
 import com.example.daggerdemo.data.model.Movie
-import com.example.retrofitdemo.R
-import com.example.retrofitdemo.databinding.ActivityMovieBinding
+import com.example.daggerdemo.databinding.ActivityMovieBinding
 import javax.inject.Inject
 
 class MovieActivity : AppCompatActivity() {
