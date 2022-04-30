@@ -15,6 +15,7 @@ import javax.inject.Singleton
         UseCaseModule::class,
         RepositoryModule::class]
 )
+
 interface AppComponent {
     fun movieSubComponent(): MovieSubComponent.Factory
 }
