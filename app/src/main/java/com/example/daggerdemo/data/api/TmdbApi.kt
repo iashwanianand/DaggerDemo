@@ -9,4 +9,5 @@ interface TmdbApi {
 
     @GET("movie/popular")
     suspend fun getMovie(@Query("api_key") apikey: String): Response<MovieList>
+
 }
