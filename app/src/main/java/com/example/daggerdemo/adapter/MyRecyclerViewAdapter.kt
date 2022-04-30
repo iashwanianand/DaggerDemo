@@ -23,4 +23,5 @@ class MyRecyclerViewAdapter(val movieList: List<MovieList>) : RecyclerView.Adapt
 
 class MyViewHolder(private val binding: LayoutPopularMovieBinding) : RecyclerView.ViewHolder(binding.root){
 
+
 }
