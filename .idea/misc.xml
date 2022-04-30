@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AndroidStudio/DaggerDemo/app/src/main/res/layout/activity_movie.xml" value="0.19907407407407407" />
+        <entry key="..\:/AndroidStudio/DaggerDemo/app/src/main/res/layout/layout_popular_movie.xml" value="0.20416666666666666" />
+        <entry key="..\:/AndroidStudio/DaggerDemo/app/src/main/res/menu/menu.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudio/RetrofitDemo/app/src/main/res/layout/activity_demo.xml" value="0.20416666666666666" />
         <entry key="..\:/AndroidStudio/RetrofitDemo/app/src/main/res/layout/activity_main.xml" value="0.19010416666666666" />
         <entry key="..\:/AndroidStudio/RetrofitDemo/app/src/main/res/layout/activity_movie.xml" value="0.20416666666666666" />
